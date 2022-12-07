@@ -1,0 +1,23 @@
+{% extends "includes/base.html" %}
+{% load static %}
+{% block content%}
+{% block title%}
+Подробня информация о погоде 
+{%endblock%}
+    {% for info in city_info %}
+          <div class="alert alert-info">
+            <div class="col-5 offset-1">
+              <form action="" method="post">
+                {% csrf_token %}
+                <b>Город: </b> {{ info.city }} <br>
+                <b>Температура: </b> {{ info.temp }} <sup>o</sup<br>
+                <img src="http://openweathermap.org/img/w/{{ info.icon }}.png" alt="Фото погоды" class=" mt-2 img-thumbnail">
+              </form>
+            </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+{%endblock%}

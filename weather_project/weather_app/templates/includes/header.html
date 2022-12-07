@@ -1,0 +1,32 @@
+{% load static %}
+  <header class="p-3 bg-dark text-white ">
+    <div class="container ">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+        </a>
+
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          {% with request.resolver_match.view_name as view_name %}
+          <li class="nav-item ">
+            <a class="nav-link  px-3 btn btn-dark {% if view_name  == 'weather_app:main' %}active{% endif %}" href="{% url 'weather_app:main'%}">
+              Главная
+            </a>
+          </li>
+          <li class="nav-item">
+            <a  class="nav-link  px-3 btn btn-dark {% if view_name  == 'about:author' %}active{% endif %}" href="{% url 'about:author'%}">Об авторе</a>
+          </li>
+          <li class="nav-item">
+            <a  class="nav-link  px-3 btn btn-dark {% if view_name  == 'about:info' %}active{% endif %}" href="{% url 'about:info'%}">Информация о проекте</a>
+          </li>
+        </ul>
+        {% endwith %}
+        <img src="{% static 'img/logo.png' %}" width="40" height="40" class="d-inline-block align-top" alt="">
+      </div>
+    </div>
+    <style>
+    .nav-item{
+      margin: 0 5px;
+    }
+  </style>
+  </header>

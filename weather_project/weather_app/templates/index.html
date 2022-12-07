@@ -1,0 +1,56 @@
+{% extends "includes/base.html" %}
+{% load static %}
+{% block content%}
+{% block title%}
+<h2>
+    <div class="d-flex justify-content-center py-3">
+        Погодное приложение
+    </div>
+</h2>
+    {%endblock%}
+    <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+        <p class="fs-5 text-muted"> Что там на улице? </p>
+      </div>
+    <div class="row justify-content-center">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-header">
+            <h4><center>Выбирете город<center></h4>
+          </div>
+        <div class="col-4 offset-1">
+            <form action="" method="post">
+              {% csrf_token %}
+                <label for="city">Город</label>
+                  {{ form.name }}
+                <input type="submit" name="send" value="Узнать погоду" class=" mt-2 btn btn-dark">
+                
+            </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-header">
+            <h4><center>Информация о погоде<center></h4>
+          </div>
+
+          {% for info in all_info %}
+          <div class="alert alert-info">
+            <div class="col-5 offset-1">
+              <form action="" method="post">
+                {% csrf_token %}
+                <b>Город: </b> {{ info.city }} <br>
+                <b>Температура: </b> {{ info.temp }} <sup>o</sup<br>
+                <img src="http://openweathermap.org/img/w/{{ info.icon }}.png" alt="Фото погоды" class=" mt-2 img-thumbnail">
+              </form>
+              {% if city.name %}
+              <a href="{% url 'weather_app:detail' city.ID%}" class="px-3 btn btn-dark">Подробнее</a>
+            {% endif %}
+            </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+{%endblock%}
